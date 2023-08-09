@@ -1,0 +1,109 @@
+ 
+    Serial.println("This is the Serial: ");
+    for(int i = 0; i < 3;){
+      if(Serial.available()){
+      readSerial = Serial.readString();
+      int i1 = readSerial.indexOf(',');
+      int i2 = readSerial.indexOf(',', i1+1);
+      int i3 = readSerial.indexOf(',', i2+1);
+      int i4 = readSerial.indexOf(',', i3+1);
+      int i5 = readSerial.indexOf(',', i4+1);
+      int i6 = readSerial.indexOf(',', i5+1);
+      int i7 = readSerial.indexOf(',', i6); 
+
+
+      n_1 = readSerial.substring(0, i1);
+      n_2 = readSerial.substring(i1 + 1, i2);
+      n_3 = readSerial.substring(i2 + 1, i3);
+    
+      n1 = readSerial.substring(i3 + 1, i4);
+      n2 = readSerial.substring(i4 + 1, i5);
+      n3 = readSerial.substring(i5 + 1,i6); 
+    
+      n4 = readSerial.substring(i7 + 1); 
+       
+
+      arrHumid  [i] = n_1.toFloat();
+      arrLevel  [i] = n_2.toFloat();
+      arrMoist  [i] = n_3.toFloat();
+      arrPh     [i] = n1.toFloat();
+      arrHumid  [i] = n2.toFloat();
+      arrNitro  [i] = n3.toFloat();
+      arrPhos   [i] = n4.toFloat(); 
+      i++;      
+    }
+  }
+
+ for(int i = 0; i < 3; i++){
+    sum_1 += arrHumid[i];
+  }  
+ for(int i = 0; i < 3; i++){
+    sum_2 += arrLevel[i];
+  }  
+   for(int i = 0; i < 3; i++){
+    sum_3 += arrMoist[i];
+  }  
+  for(int i = 0; i < 3; i++){
+    sum1 += arrPh[i];
+  }    
+  for(int i = 0; i < 3; i++){
+    sum2 += arrNitro[i];
+  }
+  for(int i = 0; i < 3; i++){
+      sum3 += arrPhos[i];
+  }
+  
+  for(int i = 0; i < 3; i++){
+     sum4 += arrPotas[i];
+  }
+   
+  ave_1 = sum_1/3;
+  ave_2 = sum_2/3;
+  ave_3 = sum_3/3;
+  ave1 = sum1/3; 
+  ave2 = sum2/3; 
+  ave3 = sum3/3;
+  ave4 = sum4/3; 
+
+  Serial.println("Humidity: " + String(ave_1));
+  Serial.println("Water_Level: " + String(ave_2));
+  Serial.println("Moisture: " + String(ave_3));
+  Serial.println("pH: " + String(ave1)); 
+  Serial.println("Nitro: " + String(ave2));
+  Serial.println("Phos: " + String(ave3)); 
+  Serial.println("Potas: " + String(ave4));
+ 
+   
+          char n_String[7];
+          char p_String[7];
+          char k_String[7];
+          char pH_String[7];
+//   
+          dtostrf(ave2,-4,2,n_String);
+          dtostrf(ave3,-4,2,p_String);
+          dtostrf(ave4,-4,2,k_String);
+          dtostrf(ave1,-4,2,pH_String);
+
+//        Firebase.setString("soilnutricontent/n",n_String);
+//        Firebase.setString("soilnutricontent/p",p_String);
+//        Firebase.setString("soilnutricontent/k",k_String);
+//        Firebase.setString("soilnutricontent/ph",pH_String);
+
+        
+
+ // Reset the variables for the next reading
+    sum_1 = 0;
+//    sum_2 = 0;
+//    sum_3 = 0;
+//    sum1 = 0;
+//    sum2 = 0;
+//    sum3 = 0;
+//    sum4 = 0; 
+//
+//    ave_1 = 0;
+//    ave_2 = 0;
+//    ave_3 = 0;
+//    ave1 = 0;
+//    ave2 = 0;
+//    ave3 = 0;
+//    ave4 = 0; 
